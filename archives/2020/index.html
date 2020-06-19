@@ -420,15 +420,17 @@ document.addEventListener('pjax:success', () => {
 
   
 
+
 <script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://xyj.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"TYtr6hVzeByaJordquGsLczI-gzGzoHsz","appKey":"s7ioPrkPVmevJMq9Rue0rkyg","placeholder":"just to do","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
 </script>
 
     </div>
